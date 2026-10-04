@@ -60,12 +60,43 @@ header{align-items:flex-start;flex-direction:column}
 <div class="loginbox">
 <h1>MI CONTROL</h1>
 <p>Ingresá para ver tus finanzas privadas.</p>
+
 <input id="loginEmail" type="email" placeholder="Tu email" style="margin-bottom:10px">
 <input id="loginPassword" type="password" placeholder="Tu contraseña" style="margin-bottom:10px">
-<button id="loginBtn">Ingresar</button><button id="forgotPasswordBtn" type="button" style="margin-top:10px;background:#fff;color:#6f4ccf;border:1px solid #6f4ccf;">Olvidé mi contraseña</button>
+
+<button id="loginBtn" type="button">Ingresar</button>
+
+<button
+id="forgotPasswordBtn"
+type="button"
+style="margin-top:10px;background:#fff;color:#6f4ccf;border:1px solid #6f4ccf;">
+Olvidé mi contraseña
+</button>
+
 <p id="loginMsg" class="note"></p>
+
+<div id="resetPasswordBox" class="hide" style="margin-top:18px;padding-top:18px;border-top:1px solid #e8e9ef">
+
+<h2 style="font-size:18px;margin:0 0 10px">Crear nueva contraseña</h2>
+
+<p class="note">
+Escribí una contraseña nueva de al menos 8 caracteres.
+</p>
+
+<input id="newPassword" type="password" placeholder="Nueva contraseña" style="margin-bottom:10px">
+
+<input id="newPassword2" type="password" placeholder="Repetir contraseña" style="margin-bottom:10px">
+
+<button id="saveNewPasswordBtn" type="button">
+Guardar nueva contraseña
+</button>
+
+<p id="resetMsg" class="note"></p>
+
 </div>
 </div>
+</div>
+
 
 <div id="appView" class="hide">
 
@@ -87,16 +118,34 @@ Finanzas personales + negocio · <span id="syncStatus">Sincronizando…</span>
 
 <div id="migrationBox" class="panel hide" style="margin-bottom:18px;border:2px solid #6f4cff">
 <h2>Traer tus datos actuales</h2>
-<p>Encontré datos de la versión anterior guardados en este navegador. Podés subirlos una sola vez a la nube para conservar todo lo que ya cargaste.</p>
-<button id="migrateBtn" style="max-width:300px">Pasar mis datos a la nube</button>
+
+<p>
+Encontré datos de la versión anterior guardados en este navegador.
+Podés subirlos una sola vez a la nube para conservar todo lo que ya cargaste.
+</p>
+
+<button id="migrateBtn" style="max-width:300px">
+Pasar mis datos a la nube
+</button>
+
 <p class="note">No borra el respaldo local.</p>
 </div>
 
+
 <div class="toolbar">
+
 <select id="month"></select>
-<button id="refreshBtn" class="secondary">Actualizar</button>
-<button id="exportBtn">Exportar respaldo</button>
+
+<button id="refreshBtn" class="secondary">
+Actualizar
+</button>
+
+<button id="exportBtn">
+Exportar respaldo
+</button>
+
 </div>
+
 
 <section class="cards">
 
@@ -142,6 +191,7 @@ Finanzas personales + negocio · <span id="syncStatus">Sincronizando…</span>
 
 </section>
 
+
 <section class="grid">
 
 <div class="panel">
@@ -153,87 +203,165 @@ Finanzas personales + negocio · <span id="syncStatus">Sincronizando…</span>
 </div>
 
 <div class="row">
-<input id="iplatform" placeholder="Plataforma: Mercado Pago, Hotmart...">
+
+<input
+id="iplatform"
+placeholder="Plataforma: Mercado Pago, Hotmart...">
 
 <select id="iinvoiced">
 <option value="no">Pendiente de facturar</option>
 <option value="si">Facturado</option>
 </select>
+
 </div>
 
 <div class="row3">
-<input id="igross" type="number" step=".01" placeholder="Venta bruta">
-<input id="icommission" type="number" step=".01" placeholder="Comisión">
-<input id="itax" type="number" step=".01" placeholder="Retenciones / impuestos">
+
+<input
+id="igross"
+type="number"
+step=".01"
+placeholder="Venta bruta">
+
+<input
+id="icommission"
+type="number"
+step=".01"
+placeholder="Comisión">
+
+<input
+id="itax"
+type="number"
+step=".01"
+placeholder="Retenciones / impuestos">
+
 </div>
 
-<p class="note">Ingreso real = venta bruta − comisión − retenciones.</p>
+<p class="note">
+Ingreso real = venta bruta − comisión − retenciones.
+</p>
 
-<button id="addIncomeBtn">Guardar ingreso</button>
+<button id="addIncomeBtn">
+Guardar ingreso
+</button>
+
 </div>
+
 
 <div class="panel">
 <h2>Registrar gasto</h2>
 
 <div class="row">
+
 <input id="edate" type="date">
-<input id="edesc" placeholder="Concepto">
+
+<input
+id="edesc"
+placeholder="Concepto">
+
 </div>
 
 <div class="row">
-<input id="eamount" type="number" step=".01" placeholder="Importe">
+
+<input
+id="eamount"
+type="number"
+step=".01"
+placeholder="Importe">
 
 <select id="etype">
 <option value="negocio">Negocio</option>
 <option value="personal">Personal</option>
 <option value="publicidad">Publicidad</option>
 </select>
+
 </div>
 
 <div class="row">
-<input id="ecategory" placeholder="Categoría: alquiler, herramientas...">
+
+<input
+id="ecategory"
+placeholder="Categoría: alquiler, herramientas...">
 
 <select id="erecurrent">
 <option value="no">Gasto puntual</option>
 <option value="si">Gasto mensual</option>
 </select>
+
 </div>
 
-<button id="addExpenseBtn">Guardar gasto</button>
+<button id="addExpenseBtn">
+Guardar gasto
+</button>
+
 </div>
+
 
 <div class="panel">
 <h2>Registrar ahorro</h2>
 
 <div class="row">
+
 <input id="sdate" type="date">
-<input id="samount" type="number" step=".01" placeholder="Importe ahorrado">
+
+<input
+id="samount"
+type="number"
+step=".01"
+placeholder="Importe ahorrado">
+
 </div>
 
 <div class="row">
-<input id="sgoal" placeholder="Objetivo: Emergencias, Viaje, Impuestos...">
-<input id="sdesc" placeholder="Nota (opcional)">
+
+<input
+id="sgoal"
+placeholder="Objetivo: Emergencias, Viaje, Impuestos...">
+
+<input
+id="sdesc"
+placeholder="Nota (opcional)">
+
 </div>
 
-<button id="addSavingBtn">Guardar ahorro</button>
+<button id="addSavingBtn">
+Guardar ahorro
+</button>
+
 </div>
+
 
 <div class="panel">
 <h2>Saldo inicial del mes</h2>
 
 <div class="row">
-<input id="opening" type="number" step=".01" placeholder="Saldo inicial">
-<button id="saveOpeningBtn">Guardar saldo</button>
+
+<input
+id="opening"
+type="number"
+step=".01"
+placeholder="Saldo inicial">
+
+<button id="saveOpeningBtn">
+Guardar saldo
+</button>
+
 </div>
 
-<p class="note">Cada mes conserva su propio saldo inicial.</p>
+<p class="note">
+Cada mes conserva su propio saldo inicial.
+</p>
+
 </div>
+
 
 <div class="panel">
 <h2>Ingresos y facturación</h2>
 
 <div class="scroll">
+
 <table>
+
 <thead>
 <tr>
 <th>Fecha</th>
@@ -244,16 +372,22 @@ Finanzas personales + negocio · <span id="syncStatus">Sincronizando…</span>
 <th></th>
 </tr>
 </thead>
+
 <tbody id="incomeRows"></tbody>
+
 </table>
+
 </div>
 </div>
+
 
 <div class="panel">
 <h2>Gastos</h2>
 
 <div class="scroll">
+
 <table>
+
 <thead>
 <tr>
 <th>Fecha</th>
@@ -263,16 +397,22 @@ Finanzas personales + negocio · <span id="syncStatus">Sincronizando…</span>
 <th></th>
 </tr>
 </thead>
+
 <tbody id="expenseRows"></tbody>
+
 </table>
+
 </div>
 </div>
+
 
 <div class="panel">
 <h2>Ahorros</h2>
 
 <div class="scroll">
+
 <table>
+
 <thead>
 <tr>
 <th>Fecha</th>
@@ -281,26 +421,44 @@ Finanzas personales + negocio · <span id="syncStatus">Sincronizando…</span>
 <th></th>
 </tr>
 </thead>
+
 <tbody id="savingRows"></tbody>
+
 </table>
+
 </div>
 </div>
+
 
 <div class="panel">
 <h2>Resumen</h2>
-<div id="breakdown" class="note" style="font-size:14px;line-height:1.8"></div>
+
+<div
+id="breakdown"
+class="note"
+style="font-size:14px;line-height:1.8">
+</div>
+
 </div>
 
 </section>
+
 </main>
 </div>
+
 
 <script>
 
 const SUPABASE_URL='https://wlscmscercitemugtnup.supabase.co';
-const SUPABASE_KEY='sb_publishable_iyZdl77sz5jyccePf7xz-w_bPPvs9FV';
 
-const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const SUPABASE_KEY=
+'sb_publishable_iyZdl77sz5jyccePf7xz-w_bPPvs9FV';
+
+const sb=
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 const OLD_KEY='mi-control-v1';
 
@@ -313,9 +471,12 @@ savings:[],
 opening:{}
 };
 
-const $=id=>document.getElementById(id);
+const $=
+id=>document.getElementById(id);
 
-const money=n=>new Intl.NumberFormat(
+
+const money=n=>
+new Intl.NumberFormat(
 'es-AR',
 {
 style:'currency',
@@ -324,30 +485,67 @@ maximumFractionDigits:2
 }
 ).format(Number(n)||0);
 
-const iso=()=>new Date().toISOString().slice(0,10);
+
+const iso=()=>
+new Date()
+.toISOString()
+.slice(0,10);
+
 
 function setSync(t){
 $('syncStatus').textContent=t;
 }
 
+
 function err(e){
+
 console.error(e);
-alert(e?.message||String(e));
+
+alert(
+e?.message||
+String(e)
+);
+
 }
 
-for(const x of document.querySelectorAll('input[type=date]')){
+
+for(
+const x
+of
+document.querySelectorAll(
+'input[type=date]'
+)
+){
+
 x.value=iso();
+
 }
+
 
 const m=$('month');
 
-for(let y=2026;y<=2030;y++){
 
-for(let i=0;i<12;i++){
+for(
+let y=2026;
+y<=2030;
+y++
+){
 
-let d=new Date(y,i,1);
+for(
+let i=0;
+i<12;
+i++
+){
 
-let v=`${y}-${String(i+1).padStart(2,'0')}`;
+let d=
+new Date(
+y,
+i,
+1
+);
+
+let v=
+`${y}-${String(i+1).padStart(2,'0')}`;
 
 m.add(
 new Option(
@@ -366,18 +564,34 @@ v
 
 }
 
+
 m.value='2026-10';
 
 m.onchange=render;
 
+
 async function login(){
 
-$('loginMsg').textContent='Ingresando…';
+$('loginMsg').textContent=
+'Ingresando…';
 
-const {data,error}=await sb.auth.signInWithPassword({
-email:$('loginEmail').value.trim(),
-password:$('loginPassword').value
+const {
+data,
+error
+}=
+await sb.auth.signInWithPassword({
+
+email:
+$('loginEmail')
+.value
+.trim(),
+
+password:
+$('loginPassword')
+.value
+
 });
+
 
 if(error){
 
@@ -388,19 +602,29 @@ return;
 
 }
 
-await enter(data.user);
+
+await enter(
+data.user
+);
 
 }
+
 
 async function enter(u){
 
 user=u;
 
-$('loginView').classList.add('hide');
+$('loginView')
+.classList
+.add('hide');
 
-$('appView').classList.remove('hide');
+$('appView')
+.classList
+.remove('hide');
 
-$('userEmail').textContent=u.email||'';
+$('userEmail')
+.textContent=
+u.email||'';
 
 checkMigration();
 
@@ -408,51 +632,112 @@ await loadAll();
 
 }
 
+
 async function loadAll(){
 
-setSync('Sincronizando…');
+setSync(
+'Sincronizando…'
+);
 
 try{
 
-const [a,b,c,d]=await Promise.all([
+const [
+a,
+b,
+c,
+d
+]=
+await Promise.all([
 
-sb.from('incomes').select('*').order('date'),
+sb
+.from('incomes')
+.select('*')
+.order('date'),
 
-sb.from('expenses').select('*').order('date'),
+sb
+.from('expenses')
+.select('*')
+.order('date'),
 
-sb.from('savings').select('*').order('date'),
+sb
+.from('savings')
+.select('*')
+.order('date'),
 
-sb.from('monthly_opening').select('*')
+sb
+.from('monthly_opening')
+.select('*')
 
 ]);
 
-for(const r of [a,b,c,d]){
 
-if(r.error)throw r.error;
+for(
+const r
+of
+[a,b,c,d]
+){
+
+if(r.error)
+throw r.error;
 
 }
 
-db.incomes=a.data.map(x=>({...x,desc:x.description}));
 
-db.expenses=b.data.map(x=>({...x,desc:x.description}));
+db.incomes=
+a.data.map(
+x=>({
+...x,
+desc:x.description
+})
+);
 
-db.savings=c.data.map(x=>({...x,desc:x.description}));
+
+db.expenses=
+b.data.map(
+x=>({
+...x,
+desc:x.description
+})
+);
+
+
+db.savings=
+c.data.map(
+x=>({
+...x,
+desc:x.description
+})
+);
+
 
 db.opening={};
 
-d.data.forEach(x=>{
 
-db.opening[x.month]=Number(x.amount);
+d.data.forEach(
+x=>{
 
-});
+db.opening[
+x.month
+]=
+Number(
+x.amount
+);
+
+}
+);
+
 
 render();
 
-setSync('Guardado online ✓');
+setSync(
+'Guardado online ✓'
+);
 
 }catch(e){
 
-setSync('Error de sincronización');
+setSync(
+'Error de sincronización'
+);
 
 err(e);
 
@@ -460,114 +745,217 @@ err(e);
 
 }
 
+
 function inMonth(x){
 
-return x.date?.startsWith(m.value);
+return
+x.date
+?.startsWith(
+m.value
+);
 
 }
 
+
 function render(){
 
-let I=db.incomes.filter(inMonth);
+let I=
+db.incomes
+.filter(inMonth);
 
-let E=db.expenses.filter(inMonth);
+let E=
+db.expenses
+.filter(inMonth);
 
-let S=db.savings.filter(inMonth);
+let S=
+db.savings
+.filter(inMonth);
 
-let gross=I.reduce(
-(a,x)=>a+Number(x.gross),
+
+let gross=
+I.reduce(
+(a,x)=>
+a+
+Number(x.gross),
 0
 );
 
-let inc=I.reduce(
-(a,x)=>a+Number(x.real),
+
+let inc=
+I.reduce(
+(a,x)=>
+a+
+Number(x.real),
 0
 );
 
-let fees=I.reduce(
-(a,x)=>a+Number(x.commission)+Number(x.tax),
+
+let fees=
+I.reduce(
+(a,x)=>
+a+
+Number(x.commission)+
+Number(x.tax),
 0
 );
 
-let exp=E.reduce(
-(a,x)=>a+Number(x.amount),
+
+let exp=
+E.reduce(
+(a,x)=>
+a+
+Number(x.amount),
 0
 );
 
-let sav=S.reduce(
-(a,x)=>a+Number(x.amount),
+
+let sav=
+S.reduce(
+(a,x)=>
+a+
+Number(x.amount),
 0
 );
 
-let biz=E
-.filter(x=>x.type!=='personal')
+
+let biz=
+E
+.filter(
+x=>
+x.type!=='personal'
+)
 .reduce(
-(a,x)=>a+Number(x.amount),
+(a,x)=>
+a+
+Number(x.amount),
 0
 );
 
-let personal=E
-.filter(x=>x.type==='personal')
+
+let personal=
+E
+.filter(
+x=>
+x.type==='personal'
+)
 .reduce(
-(a,x)=>a+Number(x.amount),
+(a,x)=>
+a+
+Number(x.amount),
 0
 );
 
-let ads=E
-.filter(x=>x.type==='publicidad')
+
+let ads=
+E
+.filter(
+x=>
+x.type==='publicidad'
+)
 .reduce(
-(a,x)=>a+Number(x.amount),
+(a,x)=>
+a+
+Number(x.amount),
 0
 );
 
-let open=Number(
-db.opening[m.value]||0
+
+let open=
+Number(
+db.opening[
+m.value
+]||0
 );
 
-$('income').textContent=money(inc);
 
-$('expenses').textContent=money(exp);
+$('income')
+.textContent=
+money(inc);
 
-$('savings').textContent=money(sav);
 
-$('available').textContent=
-money(open+inc-exp-sav);
+$('expenses')
+.textContent=
+money(exp);
 
-$('gross').textContent=money(gross);
 
-$('fees').textContent=money(fees);
+$('savings')
+.textContent=
+money(sav);
 
-$('profit').textContent=
-money(inc-biz);
 
-$('savepct').textContent=
+$('available')
+.textContent=
+money(
+open+
+inc-
+exp-
+sav
+);
+
+
+$('gross')
+.textContent=
+money(gross);
+
+
+$('fees')
+.textContent=
+money(fees);
+
+
+$('profit')
+.textContent=
+money(
+inc-
+biz
+);
+
+
+$('savepct')
+.textContent=
 inc
 ?
-((sav/inc)*100).toFixed(1)+'%'
+((sav/inc)*100)
+.toFixed(1)+'%'
 :
 '0%';
 
-$('opening').value=open||'';
 
-$('incomeRows').innerHTML=
+$('opening')
+.value=
+open||'';
 
-I.slice()
+
+$('incomeRows')
+.innerHTML=
+
+I
+.slice()
 .reverse()
-.map(x=>`
+.map(
+x=>`
 
 <tr>
 
-<td>${x.date}</td>
+<td>
+${x.date}
+</td>
 
 <td>
 ${x.desc||'-'}
 <br>
-<small>${x.platform||''}</small>
+<small>
+${x.platform||''}
+</small>
 </td>
 
-<td>${money(x.gross)}</td>
+<td>
+${money(x.gross)}
+</td>
 
-<td>${money(x.real)}</td>
+<td>
+${money(x.real)}
+</td>
 
 <td>
 
@@ -597,27 +985,41 @@ onclick="removeRow('incomes',${x.id})">
 
 </tr>
 
-`).join('');
+`
+)
+.join('');
 
-$('expenseRows').innerHTML=
 
-E.slice()
+$('expenseRows')
+.innerHTML=
+
+E
+.slice()
 .reverse()
-.map(x=>`
+.map(
+x=>`
 
 <tr>
 
-<td>${x.date}</td>
+<td>
+${x.date}
+</td>
 
 <td>
 ${x.desc||'-'}
 <br>
-<small>${x.category||''}</small>
+<small>
+${x.category||''}
+</small>
 </td>
 
-<td>${x.type}</td>
+<td>
+${x.type}
+</td>
 
-<td>${money(x.amount)}</td>
+<td>
+${money(x.amount)}
+</td>
 
 <td>
 
@@ -631,21 +1033,33 @@ onclick="removeRow('expenses',${x.id})">
 
 </tr>
 
-`).join('');
+`
+)
+.join('');
 
-$('savingRows').innerHTML=
 
-S.slice()
+$('savingRows')
+.innerHTML=
+
+S
+.slice()
 .reverse()
-.map(x=>`
+.map(
+x=>`
 
 <tr>
 
-<td>${x.date}</td>
+<td>
+${x.date}
+</td>
 
-<td>${x.goal||x.desc||'-'}</td>
+<td>
+${x.goal||x.desc||'-'}
+</td>
 
-<td>${money(x.amount)}</td>
+<td>
+${money(x.amount)}
+</td>
 
 <td>
 
@@ -659,9 +1073,13 @@ onclick="removeRow('savings',${x.id})">
 
 </tr>
 
-`).join('');
+`
+)
+.join('');
 
-$('breakdown').innerHTML=
+
+$('breakdown')
+.innerHTML=
 
 `
 Saldo inicial:
@@ -686,33 +1104,49 @@ Ahorro separado:
 
 }
 
+
 async function addIncome(){
 
-let g=+$('igross').value;
+let g=
++$('igross').value;
 
-let c=+$('icommission').value;
+let c=
++$('icommission').value;
 
-let t=+$('itax').value;
+let t=
++$('itax').value;
+
 
 if(!g){
 
-return alert('Ingresá la venta bruta');
+return alert(
+'Ingresá la venta bruta'
+);
 
 }
 
-setSync('Guardando…');
+
+setSync(
+'Guardando…'
+);
+
 
 const row={
 
-id:Date.now(),
+id:
+Date.now(),
 
-user_id:user.id,
+user_id:
+user.id,
 
-date:$('idate').value,
+date:
+$('idate').value,
 
-description:$('idesc').value,
+description:
+$('idesc').value,
 
-platform:$('iplatform').value,
+platform:
+$('iplatform').value,
 
 gross:g,
 
@@ -720,17 +1154,26 @@ commission:c,
 
 tax:t,
 
-real:g-c-t,
+real:
+g-c-t,
 
-invoiced:$('iinvoiced').value
+invoiced:
+$('iinvoiced').value
 
 };
 
-const {error}=await sb
+
+const {
+error
+}=
+await sb
 .from('incomes')
 .insert(row);
 
-if(error)return err(error);
+
+if(error)
+return err(error);
+
 
 $('idesc').value='';
 
@@ -742,45 +1185,66 @@ $('icommission').value='';
 
 $('itax').value='';
 
+
 await loadAll();
 
 }
 
+
 async function addExpense(){
 
-let a=+$('eamount').value;
+let a=
++$('eamount').value;
+
 
 if(!a){
 
-return alert('Ingresá el importe');
+return alert(
+'Ingresá el importe'
+);
 
 }
 
+
 const row={
 
-id:Date.now(),
+id:
+Date.now(),
 
-user_id:user.id,
+user_id:
+user.id,
 
-date:$('edate').value,
+date:
+$('edate').value,
 
-description:$('edesc').value,
+description:
+$('edesc').value,
 
 amount:a,
 
-type:$('etype').value,
+type:
+$('etype').value,
 
-category:$('ecategory').value,
+category:
+$('ecategory').value,
 
-recurrent:$('erecurrent').value
+recurrent:
+$('erecurrent').value
 
 };
 
-const {error}=await sb
+
+const {
+error
+}=
+await sb
 .from('expenses')
 .insert(row);
 
-if(error)return err(error);
+
+if(error)
+return err(error);
+
 
 $('edesc').value='';
 
@@ -788,41 +1252,60 @@ $('eamount').value='';
 
 $('ecategory').value='';
 
+
 await loadAll();
 
 }
 
+
 async function addSaving(){
 
-let a=+$('samount').value;
+let a=
++$('samount').value;
+
 
 if(!a){
 
-return alert('Ingresá el importe');
+return alert(
+'Ingresá el importe'
+);
 
 }
 
+
 const row={
 
-id:Date.now(),
+id:
+Date.now(),
 
-user_id:user.id,
+user_id:
+user.id,
 
-date:$('sdate').value,
+date:
+$('sdate').value,
 
-description:$('sdesc').value,
+description:
+$('sdesc').value,
 
-goal:$('sgoal').value,
+goal:
+$('sgoal').value,
 
 amount:a
 
 };
 
-const {error}=await sb
+
+const {
+error
+}=
+await sb
 .from('savings')
 .insert(row);
 
-if(error)return err(error);
+
+if(error)
+return err(error);
+
 
 $('samount').value='';
 
@@ -830,74 +1313,127 @@ $('sdesc').value='';
 
 $('sgoal').value='';
 
+
 await loadAll();
 
 }
+
 
 async function saveOpening(){
 
 const row={
 
-user_id:user.id,
+user_id:
+user.id,
 
-month:m.value,
+month:
+m.value,
 
-amount:+$('opening').value||0
+amount:
++$('opening').value||0
 
 };
 
-const {error}=await sb
+
+const {
+error
+}=
+await sb
 .from('monthly_opening')
 .upsert(
 row,
 {
-onConflict:'user_id,month'
+onConflict:
+'user_id,month'
 }
 );
 
-if(error)return err(error);
+
+if(error)
+return err(error);
+
 
 await loadAll();
 
 }
 
-async function removeRow(table,id){
 
-if(!confirm('¿Eliminar este movimiento?')){
+async function removeRow(
+table,
+id
+){
+
+if(
+!confirm(
+'¿Eliminar este movimiento?'
+)
+){
 
 return;
 
 }
 
-const {error}=await sb
+
+const {
+error
+}=
+await sb
 .from(table)
 .delete()
-.eq('id',id);
+.eq(
+'id',
+id
+);
 
-if(error)return err(error);
+
+if(error)
+return err(error);
+
 
 await loadAll();
 
 }
 
-async function toggleInvoice(id,current){
 
-const {error}=await sb
+async function toggleInvoice(
+id,
+current
+){
+
+const {
+error
+}=
+await sb
 .from('incomes')
 .update({
-invoiced:current==='si'?'no':'si'
-})
-.eq('id',id);
 
-if(error)return err(error);
+invoiced:
+current==='si'
+?
+'no'
+:
+'si'
+
+})
+.eq(
+'id',
+id
+);
+
+
+if(error)
+return err(error);
+
 
 await loadAll();
 
 }
+
 
 function exportData(){
 
-let b=new Blob(
+let b=
+new Blob(
 [
 JSON.stringify(
 db,
@@ -906,28 +1442,45 @@ null,
 )
 ],
 {
-type:'application/json'
+type:
+'application/json'
 }
 );
 
-let a=document.createElement('a');
 
-a.href=URL.createObjectURL(b);
+let a=
+document.createElement(
+'a'
+);
+
+
+a.href=
+URL.createObjectURL(
+b
+);
+
 
 a.download=
 'mi-control-respaldo-online.json';
+
 
 a.click();
 
 }
 
+
 function checkMigration(){
 
 try{
 
-const old=JSON.parse(
-localStorage.getItem(OLD_KEY)||'null'
+const old=
+JSON.parse(
+localStorage.getItem(
+OLD_KEY
+)||
+'null'
 );
+
 
 if(
 old&&
@@ -935,17 +1488,22 @@ old&&
 old.incomes?.length||
 old.expenses?.length||
 old.savings?.length||
-Object.keys(old.opening||{}).length
+Object.keys(
+old.opening||{}
+).length
 )
 ){
 
-$('migrationBox').classList.remove('hide');
+$('migrationBox')
+.classList
+.remove('hide');
 
 }
 
 }catch{}
 
 }
+
 
 async function migrate(){
 
@@ -959,9 +1517,15 @@ return;
 
 }
 
-const old=JSON.parse(
-localStorage.getItem(OLD_KEY)||'null'
+
+const old=
+JSON.parse(
+localStorage.getItem(
+OLD_KEY
+)||
+'null'
 );
+
 
 if(!old){
 
@@ -971,13 +1535,21 @@ return alert(
 
 }
 
-$('migrateBtn').disabled=true;
 
-$('migrateBtn').textContent='Copiando…';
+$('migrateBtn')
+.disabled=true;
+
+
+$('migrateBtn')
+.textContent=
+'Copiando…';
+
 
 try{
 
-const existing=await sb
+
+const existing=
+await sb
 .from('incomes')
 .select(
 'id',
@@ -986,6 +1558,7 @@ count:'exact',
 head:true
 }
 );
+
 
 if(
 existing.count>0 &&
@@ -998,23 +1571,34 @@ return;
 
 }
 
-const inc=(old.incomes||[]).map(x=>({
+
+const inc=
+(old.incomes||[])
+.map(
+x=>({
 
 id:x.id,
 
-user_id:user.id,
+user_id:
+user.id,
 
-date:x.date,
+date:
+x.date,
 
-description:x.desc||'',
+description:
+x.desc||'',
 
-platform:x.platform||'',
+platform:
+x.platform||'',
 
-gross:x.gross||0,
+gross:
+x.gross||0,
 
-commission:x.commission||0,
+commission:
+x.commission||0,
 
-tax:x.tax||0,
+tax:
+x.tax||0,
 
 real:
 x.real ??
@@ -1026,52 +1610,82 @@ x.real ??
 (x.tax||0)
 ),
 
-invoiced:x.invoiced||'no'
+invoiced:
+x.invoiced||'no'
 
-}));
+})
+);
 
-const exp=(old.expenses||[]).map(x=>({
 
-id:x.id,
-
-user_id:user.id,
-
-date:x.date,
-
-description:x.desc||'',
-
-amount:x.amount||0,
-
-type:x.type||'negocio',
-
-category:x.category||'',
-
-recurrent:x.recurrent||'no'
-
-}));
-
-const sav=(old.savings||[]).map(x=>({
+const exp=
+(old.expenses||[])
+.map(
+x=>({
 
 id:x.id,
 
-user_id:user.id,
+user_id:
+user.id,
 
-date:x.date,
+date:
+x.date,
 
-description:x.desc||'',
+description:
+x.desc||'',
 
-goal:x.goal||x.desc||'',
+amount:
+x.amount||0,
 
-amount:x.amount||0
+type:
+x.type||'negocio',
 
-}));
+category:
+x.category||'',
 
-const op=Object.entries(
+recurrent:
+x.recurrent||'no'
+
+})
+);
+
+
+const sav=
+(old.savings||[])
+.map(
+x=>({
+
+id:x.id,
+
+user_id:
+user.id,
+
+date:
+x.date,
+
+description:
+x.desc||'',
+
+goal:
+x.goal||
+x.desc||
+'',
+
+amount:
+x.amount||0
+
+})
+);
+
+
+const op=
+Object.entries(
 old.opening||{}
-).map(
+)
+.map(
 ([month,amount])=>({
 
-user_id:user.id,
+user_id:
+user.id,
 
 month,
 
@@ -1080,8 +1694,12 @@ amount
 })
 );
 
+
 for(
-const [table,rows]
+const [
+table,
+rows
+]
 of
 [
 ['incomes',inc],
@@ -1090,45 +1708,69 @@ of
 ]
 ){
 
-if(rows.length){
+if(
+rows.length
+){
 
-const {error}=await sb
+const {
+error
+}=
+await sb
 .from(table)
 .upsert(rows);
 
-if(error)throw error;
+
+if(error)
+throw error;
 
 }
 
 }
 
-if(op.length){
 
-const {error}=await sb
+if(
+op.length
+){
+
+const {
+error
+}=
+await sb
 .from('monthly_opening')
 .upsert(
 op,
 {
-onConflict:'user_id,month'
+onConflict:
+'user_id,month'
 }
 );
 
-if(error)throw error;
+
+if(error)
+throw error;
 
 }
 
-localStorage.setItem(
+
+localStorage
+.setItem(
 'mi-control-migrated',
 'yes'
 );
 
-$('migrationBox').classList.add('hide');
+
+$('migrationBox')
+.classList
+.add('hide');
+
 
 await loadAll();
+
 
 alert(
 '¡Listo! Tus datos ya están guardados online.'
 );
+
 
 }catch(e){
 
@@ -1136,42 +1778,117 @@ err(e);
 
 }finally{
 
-$('migrateBtn').disabled=false;
+$('migrateBtn')
+.disabled=false;
 
-$('migrateBtn').textContent=
+
+$('migrateBtn')
+.textContent=
 'Pasar mis datos a la nube';
 
 }
 
 }
 
-$('loginBtn').onclick=login;$('forgotPasswordBtn').onclick = async () => {
-  const email = $('loginEmail').value.trim();
 
-  if (!email) {
-    $('loginMsg').textContent = 'Primero escribí tu email.';
-    return;
-  }
+/* INICIAR SESIÓN */
 
-  $('loginMsg').textContent = 'Enviando correo...';
+$('loginBtn').onclick=
+login;
 
-  const { error } = await sb.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://infoiapmvflow-beep.github.io/mi-control-financiero/'
-  });
 
-  if (error) {
-    $('loginMsg').textContent = 'No se pudo enviar: ' + error.message;
-  } else {
-    $('loginMsg').textContent = 'Listo. Revisá tu email para crear una nueva contraseña.';
-  }
+/* RECUPERAR CONTRASEÑA */
+
+$('forgotPasswordBtn').onclick=
+async()=>{
+
+const email=
+$('loginEmail')
+.value
+.trim();
+
+
+if(!email){
+
+$('loginMsg')
+.textContent=
+'Primero escribí tu email.';
+
+$('loginEmail')
+.focus();
+
+return;
+
+}
+
+
+$('forgotPasswordBtn')
+.disabled=true;
+
+
+$('loginMsg')
+.textContent=
+'Enviando correo de recuperación…';
+
+
+try{
+
+const {
+error
+}=
+await sb.auth
+.resetPasswordForEmail(
+email,
+{
+redirectTo:
+'https://infoiapmvflow-beep.github.io/mi-control-financiero/'
+}
+);
+
+
+if(error)
+throw error;
+
+
+$('loginMsg')
+.textContent=
+'Listo. Revisá tu email y abrí el enlace para crear una contraseña nueva.';
+
+
+}catch(e){
+
+console.error(e);
+
+
+$('loginMsg')
+.textContent=
+'No se pudo enviar el correo: '+
+(
+e?.message||
+String(e)
+);
+
+
+}finally{
+
+$('forgotPasswordBtn')
+.disabled=false;
+
+}
+
 };
+
+
+/* ENTER PARA INGRESAR */
 
 $('loginPassword')
 .addEventListener(
 'keydown',
 e=>{
 
-if(e.key==='Enter'){
+if(
+e.key==='Enter'
+){
 
 login();
 
@@ -1180,27 +1897,253 @@ login();
 }
 );
 
-$('logoutBtn').onclick=async()=>{
 
-await sb.auth.signOut();
+/* SALIR */
+
+$('logoutBtn')
+.onclick=
+async()=>{
+
+await sb.auth
+.signOut();
 
 location.reload();
 
 };
 
-$('addIncomeBtn').onclick=addIncome;
 
-$('addExpenseBtn').onclick=addExpense;
+/* BOTONES DE LA APP */
 
-$('addSavingBtn').onclick=addSaving;
+$('addIncomeBtn')
+.onclick=
+addIncome;
 
-$('saveOpeningBtn').onclick=saveOpening;
+$('addExpenseBtn')
+.onclick=
+addExpense;
 
-$('exportBtn').onclick=exportData;
+$('addSavingBtn')
+.onclick=
+addSaving;
 
-$('refreshBtn').onclick=loadAll;
+$('saveOpeningBtn')
+.onclick=
+saveOpening;
 
-$('migrateBtn').onclick=migrate;
+$('exportBtn')
+.onclick=
+exportData;
+
+$('refreshBtn')
+.onclick=
+loadAll;
+
+$('migrateBtn')
+.onclick=
+migrate;
+
+
+/* RECUPERACIÓN */
+
+let recoveryMode=false;
+
+
+function showRecovery(){
+
+recoveryMode=true;
+
+
+$('appView')
+.classList
+.add('hide');
+
+
+$('loginView')
+.classList
+.remove('hide');
+
+
+$('loginEmail')
+.classList
+.add('hide');
+
+
+$('loginPassword')
+.classList
+.add('hide');
+
+
+$('loginBtn')
+.classList
+.add('hide');
+
+
+$('forgotPasswordBtn')
+.classList
+.add('hide');
+
+
+$('loginMsg')
+.textContent=
+'Abriste correctamente el enlace de recuperación.';
+
+
+$('resetPasswordBox')
+.classList
+.remove('hide');
+
+}
+
+
+/* GUARDAR NUEVA CONTRASEÑA */
+
+$('saveNewPasswordBtn')
+.onclick=
+async()=>{
+
+const p1=
+$('newPassword')
+.value;
+
+
+const p2=
+$('newPassword2')
+.value;
+
+
+if(
+p1.length<8
+){
+
+$('resetMsg')
+.textContent=
+'La contraseña debe tener al menos 8 caracteres.';
+
+return;
+
+}
+
+
+if(
+p1!==p2
+){
+
+$('resetMsg')
+.textContent=
+'Las dos contraseñas no coinciden.';
+
+return;
+
+}
+
+
+$('saveNewPasswordBtn')
+.disabled=true;
+
+
+$('resetMsg')
+.textContent=
+'Guardando contraseña…';
+
+
+try{
+
+const {
+error
+}=
+await sb.auth
+.updateUser({
+password:p1
+});
+
+
+if(error)
+throw error;
+
+
+$('resetMsg')
+.textContent=
+'Contraseña actualizada correctamente.';
+
+
+alert(
+'Contraseña actualizada. Ya podés usar la misma contraseña en tu Mac y en tu celular.'
+);
+
+
+recoveryMode=false;
+
+
+const {
+data:{
+session
+}
+}=
+await sb.auth
+.getSession();
+
+
+if(
+session?.user
+){
+
+await enter(
+session.user
+);
+
+}
+
+
+}catch(e){
+
+console.error(e);
+
+
+$('resetMsg')
+.textContent=
+'No se pudo cambiar la contraseña: '+
+(
+e?.message||
+String(e)
+);
+
+
+}finally{
+
+$('saveNewPasswordBtn')
+.disabled=false;
+
+}
+
+};
+
+
+/*
+IMPORTANTE:
+Este listener se registra antes de comprobar
+la sesión para detectar PASSWORD_RECOVERY.
+*/
+
+sb.auth
+.onAuthStateChange(
+(
+event,
+session
+)=>{
+
+if(
+event==='PASSWORD_RECOVERY'
+){
+
+showRecovery();
+
+}
+
+}
+);
+
+
+/* COMPROBAR SESIÓN */
 
 (async()=>{
 
@@ -1208,43 +2151,51 @@ const {
 data:{
 session
 }
-}=await sb.auth.getSession();
+}=
+await sb.auth
+.getSession();
 
-if(session?.user){
 
-enter(session.user);
+const recoveryInUrl=
+
+location.hash
+.includes(
+'type=recovery'
+)
+
+||
+
+location.search
+.includes(
+'type=recovery'
+);
+
+
+if(
+recoveryInUrl
+){
+
+showRecovery();
+
+return;
+
+}
+
+
+if(
+session?.user &&
+!recoveryMode
+){
+
+await enter(
+session.user
+);
 
 }
 
 })();
 
-sb.auth.onAuthStateChange(async (event, session) => {
-  if (event === 'PASSWORD_RECOVERY') {
-    const nuevaClave = prompt(
-      'MI CONTROL: escribí tu nueva contraseña (mínimo 8 caracteres)'
-    );
-
-    if (!nuevaClave) {
-      alert('No se cambió la contraseña.');
-      return;
-    }
-
-    if (nuevaClave.length < 8) {
-      alert('La contraseña debe tener al menos 8 caracteres.');
-      return;
-    }
-
-    const { error } = await sb.auth.updateUser({
-      password: nuevaClave
-    });
-
-    if (error) {
-      alert('No se pudo cambiar la contraseña: ' + error.message);
-    } else {
-      alert('Contraseña actualizada. Ya podés ingresar desde tu Mac y celular.');
-    }
-  }
-});</script>
+</script>
 
 </body>
 </html>
