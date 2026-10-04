@@ -62,7 +62,7 @@ header{align-items:flex-start;flex-direction:column}
 <p>Ingresá para ver tus finanzas privadas.</p>
 <input id="loginEmail" type="email" placeholder="Tu email" style="margin-bottom:10px">
 <input id="loginPassword" type="password" placeholder="Tu contraseña" style="margin-bottom:10px">
-<button id="loginBtn">Ingresar</button>
+<button id="loginBtn">Ingresar</button><button id="forgotPasswordBtn" type="button" style="margin-top:10px;background:#fff;color:#6f4ccf;border:1px solid #6f4ccf;">Olvidé mi contraseña</button>
 <p id="loginMsg" class="note"></p>
 </div>
 </div>
@@ -1145,7 +1145,26 @@ $('migrateBtn').textContent=
 
 }
 
-$('loginBtn').onclick=login;
+$('loginBtn').onclick=login;$('forgotPasswordBtn').onclick = async () => {
+  const email = $('loginEmail').value.trim();
+
+  if (!email) {
+    $('loginMsg').textContent = 'Primero escribí tu email.';
+    return;
+  }
+
+  $('loginMsg').textContent = 'Enviando correo...';
+
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://infoiapmvflow-beep.github.io/mi-control-financiero/'
+  });
+
+  if (error) {
+    $('loginMsg').textContent = 'No se pudo enviar: ' + error.message;
+  } else {
+    $('loginMsg').textContent = 'Listo. Revisá tu email para crear una nueva contraseña.';
+  }
+};
 
 $('loginPassword')
 .addEventListener(
@@ -1199,7 +1218,33 @@ enter(session.user);
 
 })();
 
-</script>
+sb.auth.onAuthStateChange(async (event, session) => {
+  if (event === 'PASSWORD_RECOVERY') {
+    const nuevaClave = prompt(
+      'MI CONTROL: escribí tu nueva contraseña (mínimo 8 caracteres)'
+    );
+
+    if (!nuevaClave) {
+      alert('No se cambió la contraseña.');
+      return;
+    }
+
+    if (nuevaClave.length < 8) {
+      alert('La contraseña debe tener al menos 8 caracteres.');
+      return;
+    }
+
+    const { error } = await sb.auth.updateUser({
+      password: nuevaClave
+    });
+
+    if (error) {
+      alert('No se pudo cambiar la contraseña: ' + error.message);
+    } else {
+      alert('Contraseña actualizada. Ya podés ingresar desde tu Mac y celular.');
+    }
+  }
+});</script>
 
 </body>
 </html>
