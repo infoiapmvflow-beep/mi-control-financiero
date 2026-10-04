@@ -97,7 +97,6 @@ Guardar nueva contraseña
 </div>
 </div>
 
-
 <div id="appView" class="hide">
 
 <header>
@@ -131,7 +130,6 @@ Pasar mis datos a la nube
 <p class="note">No borra el respaldo local.</p>
 </div>
 
-
 <div class="toolbar">
 
 <select id="month"></select>
@@ -145,7 +143,6 @@ Exportar respaldo
 </button>
 
 </div>
-
 
 <section class="cards">
 
@@ -190,7 +187,6 @@ Exportar respaldo
 </div>
 
 </section>
-
 
 <section class="grid">
 
@@ -247,7 +243,6 @@ Guardar ingreso
 
 </div>
 
-
 <div class="panel">
 <h2>Registrar gasto</h2>
 
@@ -296,7 +291,6 @@ Guardar gasto
 
 </div>
 
-
 <div class="panel">
 <h2>Registrar ahorro</h2>
 
@@ -330,7 +324,6 @@ Guardar ahorro
 
 </div>
 
-
 <div class="panel">
 <h2>Saldo inicial del mes</h2>
 
@@ -353,7 +346,6 @@ Cada mes conserva su propio saldo inicial.
 </p>
 
 </div>
-
 
 <div class="panel">
 <h2>Ingresos y facturación</h2>
@@ -380,7 +372,6 @@ Cada mes conserva su propio saldo inicial.
 </div>
 </div>
 
-
 <div class="panel">
 <h2>Gastos</h2>
 
@@ -405,7 +396,6 @@ Cada mes conserva su propio saldo inicial.
 </div>
 </div>
 
-
 <div class="panel">
 <h2>Ahorros</h2>
 
@@ -429,7 +419,6 @@ Cada mes conserva su propio saldo inicial.
 </div>
 </div>
 
-
 <div class="panel">
 <h2>Resumen</h2>
 
@@ -445,7 +434,6 @@ style="font-size:14px;line-height:1.8">
 
 </main>
 </div>
-
 
 <script>
 
@@ -474,7 +462,6 @@ opening:{}
 const $=
 id=>document.getElementById(id);
 
-
 const money=n=>
 new Intl.NumberFormat(
 'es-AR',
@@ -485,29 +472,22 @@ maximumFractionDigits:2
 }
 ).format(Number(n)||0);
 
-
 const iso=()=>
 new Date()
 .toISOString()
 .slice(0,10);
 
-
 function setSync(t){
 $('syncStatus').textContent=t;
 }
 
-
 function err(e){
-
 console.error(e);
-
 alert(
 e?.message||
 String(e)
 );
-
 }
-
 
 for(
 const x
@@ -516,14 +496,10 @@ document.querySelectorAll(
 'input[type=date]'
 )
 ){
-
 x.value=iso();
-
 }
 
-
 const m=$('month');
-
 
 for(
 let y=2026;
@@ -564,11 +540,8 @@ v
 
 }
 
-
 m.value='2026-10';
-
 m.onchange=render;
-
 
 async function login(){
 
@@ -592,7 +565,6 @@ $('loginPassword')
 
 });
 
-
 if(error){
 
 $('loginMsg').textContent=
@@ -602,13 +574,11 @@ return;
 
 }
 
-
 await enter(
 data.user
 );
 
 }
-
 
 async function enter(u){
 
@@ -631,7 +601,6 @@ checkMigration();
 await loadAll();
 
 }
-
 
 async function loadAll(){
 
@@ -670,7 +639,6 @@ sb
 
 ]);
 
-
 for(
 const r
 of
@@ -682,7 +650,6 @@ throw r.error;
 
 }
 
-
 db.incomes=
 a.data.map(
 x=>({
@@ -690,7 +657,6 @@ x=>({
 desc:x.description
 })
 );
-
 
 db.expenses=
 b.data.map(
@@ -700,7 +666,6 @@ desc:x.description
 })
 );
 
-
 db.savings=
 c.data.map(
 x=>({
@@ -709,9 +674,7 @@ desc:x.description
 })
 );
 
-
 db.opening={};
-
 
 d.data.forEach(
 x=>{
@@ -725,7 +688,6 @@ x.amount
 
 }
 );
-
 
 render();
 
@@ -745,17 +707,12 @@ err(e);
 
 }
 
-
+/* CORRECCIÓN IMPORTANTE:
+   antes el return estaba separado y por eso
+   los movimientos no aparecían en pantalla. */
 function inMonth(x){
-
-return
-x.date
-?.startsWith(
-m.value
-);
-
+  return x.date?.startsWith(m.value);
 }
-
 
 function render(){
 
@@ -771,7 +728,6 @@ let S=
 db.savings
 .filter(inMonth);
 
-
 let gross=
 I.reduce(
 (a,x)=>
@@ -780,7 +736,6 @@ Number(x.gross),
 0
 );
 
-
 let inc=
 I.reduce(
 (a,x)=>
@@ -788,7 +743,6 @@ a+
 Number(x.real),
 0
 );
-
 
 let fees=
 I.reduce(
@@ -799,7 +753,6 @@ Number(x.tax),
 0
 );
 
-
 let exp=
 E.reduce(
 (a,x)=>
@@ -808,7 +761,6 @@ Number(x.amount),
 0
 );
 
-
 let sav=
 S.reduce(
 (a,x)=>
@@ -816,7 +768,6 @@ a+
 Number(x.amount),
 0
 );
-
 
 let biz=
 E
@@ -831,7 +782,6 @@ Number(x.amount),
 0
 );
 
-
 let personal=
 E
 .filter(
@@ -844,7 +794,6 @@ a+
 Number(x.amount),
 0
 );
-
 
 let ads=
 E
@@ -859,7 +808,6 @@ Number(x.amount),
 0
 );
 
-
 let open=
 Number(
 db.opening[
@@ -867,24 +815,11 @@ m.value
 ]||0
 );
 
+$('income').textContent=money(inc);
+$('expenses').textContent=money(exp);
+$('savings').textContent=money(sav);
 
-$('income')
-.textContent=
-money(inc);
-
-
-$('expenses')
-.textContent=
-money(exp);
-
-
-$('savings')
-.textContent=
-money(sav);
-
-
-$('available')
-.textContent=
+$('available').textContent=
 money(
 open+
 inc-
@@ -892,27 +827,16 @@ exp-
 sav
 );
 
+$('gross').textContent=money(gross);
+$('fees').textContent=money(fees);
 
-$('gross')
-.textContent=
-money(gross);
-
-
-$('fees')
-.textContent=
-money(fees);
-
-
-$('profit')
-.textContent=
+$('profit').textContent=
 money(
 inc-
 biz
 );
 
-
-$('savepct')
-.textContent=
+$('savepct').textContent=
 inc
 ?
 ((sav/inc)*100)
@@ -920,14 +844,10 @@ inc
 :
 '0%';
 
-
-$('opening')
-.value=
+$('opening').value=
 open||'';
 
-
-$('incomeRows')
-.innerHTML=
+$('incomeRows').innerHTML=
 
 I
 .slice()
@@ -937,25 +857,17 @@ x=>`
 
 <tr>
 
-<td>
-${x.date}
-</td>
+<td>${x.date}</td>
 
 <td>
 ${x.desc||'-'}
 <br>
-<small>
-${x.platform||''}
-</small>
+<small>${x.platform||''}</small>
 </td>
 
-<td>
-${money(x.gross)}
-</td>
+<td>${money(x.gross)}</td>
 
-<td>
-${money(x.real)}
-</td>
+<td>${money(x.real)}</td>
 
 <td>
 
@@ -989,9 +901,7 @@ onclick="removeRow('incomes',${x.id})">
 )
 .join('');
 
-
-$('expenseRows')
-.innerHTML=
+$('expenseRows').innerHTML=
 
 E
 .slice()
@@ -1001,25 +911,17 @@ x=>`
 
 <tr>
 
-<td>
-${x.date}
-</td>
+<td>${x.date}</td>
 
 <td>
 ${x.desc||'-'}
 <br>
-<small>
-${x.category||''}
-</small>
+<small>${x.category||''}</small>
 </td>
 
-<td>
-${x.type}
-</td>
+<td>${x.type}</td>
 
-<td>
-${money(x.amount)}
-</td>
+<td>${money(x.amount)}</td>
 
 <td>
 
@@ -1037,9 +939,7 @@ onclick="removeRow('expenses',${x.id})">
 )
 .join('');
 
-
-$('savingRows')
-.innerHTML=
+$('savingRows').innerHTML=
 
 S
 .slice()
@@ -1049,17 +949,11 @@ x=>`
 
 <tr>
 
-<td>
-${x.date}
-</td>
+<td>${x.date}</td>
 
-<td>
-${x.goal||x.desc||'-'}
-</td>
+<td>${x.goal||x.desc||'-'}</td>
 
-<td>
-${money(x.amount)}
-</td>
+<td>${money(x.amount)}</td>
 
 <td>
 
@@ -1077,9 +971,7 @@ onclick="removeRow('savings',${x.id})">
 )
 .join('');
 
-
-$('breakdown')
-.innerHTML=
+$('breakdown').innerHTML=
 
 `
 Saldo inicial:
@@ -1104,49 +996,31 @@ Ahorro separado:
 
 }
 
-
 async function addIncome(){
 
-let g=
-+$('igross').value;
-
-let c=
-+$('icommission').value;
-
-let t=
-+$('itax').value;
-
+let g=+$('igross').value;
+let c=+$('icommission').value;
+let t=+$('itax').value;
 
 if(!g){
-
 return alert(
 'Ingresá la venta bruta'
 );
-
 }
 
-
-setSync(
-'Guardando…'
-);
-
+setSync('Guardando…');
 
 const row={
 
-id:
-Date.now(),
+id:Date.now(),
 
-user_id:
-user.id,
+user_id:user.id,
 
-date:
-$('idate').value,
+date:$('idate').value,
 
-description:
-$('idesc').value,
+description:$('idesc').value,
 
-platform:
-$('iplatform').value,
+platform:$('iplatform').value,
 
 gross:g,
 
@@ -1154,209 +1028,160 @@ commission:c,
 
 tax:t,
 
-real:
-g-c-t,
+real:g-c-t,
 
-invoiced:
-$('iinvoiced').value
+invoiced:$('iinvoiced').value
 
 };
 
-
-const {
-error
-}=
+const {error}=
 await sb
 .from('incomes')
 .insert(row);
 
-
-if(error)
+if(error){
+setSync('Error al guardar');
 return err(error);
-
+}
 
 $('idesc').value='';
-
 $('iplatform').value='';
-
 $('igross').value='';
-
 $('icommission').value='';
-
 $('itax').value='';
-
 
 await loadAll();
 
 }
 
-
 async function addExpense(){
 
-let a=
-+$('eamount').value;
-
+let a=+$('eamount').value;
 
 if(!a){
-
 return alert(
 'Ingresá el importe'
 );
-
 }
 
+setSync('Guardando…');
 
 const row={
 
-id:
-Date.now(),
+id:Date.now(),
 
-user_id:
-user.id,
+user_id:user.id,
 
-date:
-$('edate').value,
+date:$('edate').value,
 
-description:
-$('edesc').value,
+description:$('edesc').value,
 
 amount:a,
 
-type:
-$('etype').value,
+type:$('etype').value,
 
-category:
-$('ecategory').value,
+category:$('ecategory').value,
 
-recurrent:
-$('erecurrent').value
+recurrent:$('erecurrent').value
 
 };
 
-
-const {
-error
-}=
+const {error}=
 await sb
 .from('expenses')
 .insert(row);
 
-
-if(error)
+if(error){
+setSync('Error al guardar');
 return err(error);
-
+}
 
 $('edesc').value='';
-
 $('eamount').value='';
-
 $('ecategory').value='';
-
 
 await loadAll();
 
 }
 
-
 async function addSaving(){
 
-let a=
-+$('samount').value;
-
+let a=+$('samount').value;
 
 if(!a){
-
 return alert(
 'Ingresá el importe'
 );
-
 }
 
+setSync('Guardando…');
 
 const row={
 
-id:
-Date.now(),
+id:Date.now(),
 
-user_id:
-user.id,
+user_id:user.id,
 
-date:
-$('sdate').value,
+date:$('sdate').value,
 
-description:
-$('sdesc').value,
+description:$('sdesc').value,
 
-goal:
-$('sgoal').value,
+goal:$('sgoal').value,
 
 amount:a
 
 };
 
-
-const {
-error
-}=
+const {error}=
 await sb
 .from('savings')
 .insert(row);
 
-
-if(error)
+if(error){
+setSync('Error al guardar');
 return err(error);
-
+}
 
 $('samount').value='';
-
 $('sdesc').value='';
-
 $('sgoal').value='';
-
 
 await loadAll();
 
 }
 
-
 async function saveOpening(){
+
+setSync('Guardando…');
 
 const row={
 
-user_id:
-user.id,
+user_id:user.id,
 
-month:
-m.value,
+month:m.value,
 
-amount:
-+$('opening').value||0
+amount:+$('opening').value||0
 
 };
 
-
-const {
-error
-}=
+const {error}=
 await sb
 .from('monthly_opening')
 .upsert(
 row,
 {
-onConflict:
-'user_id,month'
+onConflict:'user_id,month'
 }
 );
 
-
-if(error)
+if(error){
+setSync('Error al guardar');
 return err(error);
-
+}
 
 await loadAll();
 
 }
-
 
 async function removeRow(
 table,
@@ -1368,15 +1193,10 @@ if(
 '¿Eliminar este movimiento?'
 )
 ){
-
 return;
-
 }
 
-
-const {
-error
-}=
+const {error}=
 await sb
 .from(table)
 .delete()
@@ -1385,24 +1205,19 @@ await sb
 id
 );
 
-
 if(error)
 return err(error);
-
 
 await loadAll();
 
 }
-
 
 async function toggleInvoice(
 id,
 current
 ){
 
-const {
-error
-}=
+const {error}=
 await sb
 .from('incomes')
 .update({
@@ -1420,15 +1235,12 @@ current==='si'
 id
 );
 
-
 if(error)
 return err(error);
-
 
 await loadAll();
 
 }
-
 
 function exportData(){
 
@@ -1442,32 +1254,26 @@ null,
 )
 ],
 {
-type:
-'application/json'
+type:'application/json'
 }
 );
-
 
 let a=
 document.createElement(
 'a'
 );
 
-
 a.href=
 URL.createObjectURL(
 b
 );
 
-
 a.download=
 'mi-control-respaldo-online.json';
-
 
 a.click();
 
 }
-
 
 function checkMigration(){
 
@@ -1480,7 +1286,6 @@ OLD_KEY
 )||
 'null'
 );
-
 
 if(
 old&&
@@ -1504,7 +1309,6 @@ $('migrationBox')
 
 }
 
-
 async function migrate(){
 
 if(
@@ -1512,11 +1316,8 @@ if(
 'Vamos a copiar a la nube los datos guardados en este navegador. ¿Continuar?'
 )
 ){
-
 return;
-
 }
-
 
 const old=
 JSON.parse(
@@ -1526,27 +1327,16 @@ OLD_KEY
 'null'
 );
 
-
 if(!old){
-
 return alert(
 'No encontré datos locales.'
 );
-
 }
 
-
-$('migrateBtn')
-.disabled=true;
-
-
-$('migrateBtn')
-.textContent=
-'Copiando…';
-
+$('migrateBtn').disabled=true;
+$('migrateBtn').textContent='Copiando…';
 
 try{
-
 
 const existing=
 await sb
@@ -1559,18 +1349,14 @@ head:true
 }
 );
 
-
 if(
 existing.count>0 &&
 !confirm(
 'Ya hay datos online. Si continuás podrían duplicarse algunos movimientos. ¿Continuar igual?'
 )
 ){
-
 return;
-
 }
-
 
 const inc=
 (old.incomes||[])
@@ -1579,26 +1365,19 @@ x=>({
 
 id:x.id,
 
-user_id:
-user.id,
+user_id:user.id,
 
-date:
-x.date,
+date:x.date,
 
-description:
-x.desc||'',
+description:x.desc||'',
 
-platform:
-x.platform||'',
+platform:x.platform||'',
 
-gross:
-x.gross||0,
+gross:x.gross||0,
 
-commission:
-x.commission||0,
+commission:x.commission||0,
 
-tax:
-x.tax||0,
+tax:x.tax||0,
 
 real:
 x.real ??
@@ -1610,12 +1389,10 @@ x.real ??
 (x.tax||0)
 ),
 
-invoiced:
-x.invoiced||'no'
+invoiced:x.invoiced||'no'
 
 })
 );
-
 
 const exp=
 (old.expenses||[])
@@ -1624,30 +1401,22 @@ x=>({
 
 id:x.id,
 
-user_id:
-user.id,
+user_id:user.id,
 
-date:
-x.date,
+date:x.date,
 
-description:
-x.desc||'',
+description:x.desc||'',
 
-amount:
-x.amount||0,
+amount:x.amount||0,
 
-type:
-x.type||'negocio',
+type:x.type||'negocio',
 
-category:
-x.category||'',
+category:x.category||'',
 
-recurrent:
-x.recurrent||'no'
+recurrent:x.recurrent||'no'
 
 })
 );
-
 
 const sav=
 (old.savings||[])
@@ -1656,26 +1425,21 @@ x=>({
 
 id:x.id,
 
-user_id:
-user.id,
+user_id:user.id,
 
-date:
-x.date,
+date:x.date,
 
-description:
-x.desc||'',
+description:x.desc||'',
 
 goal:
 x.goal||
 x.desc||
 '',
 
-amount:
-x.amount||0
+amount:x.amount||0
 
 })
 );
-
 
 const op=
 Object.entries(
@@ -1684,8 +1448,7 @@ old.opening||{}
 .map(
 ([month,amount])=>({
 
-user_id:
-user.id,
+user_id:user.id,
 
 month,
 
@@ -1693,7 +1456,6 @@ amount
 
 })
 );
-
 
 for(
 const [
@@ -1708,17 +1470,12 @@ of
 ]
 ){
 
-if(
-rows.length
-){
+if(rows.length){
 
-const {
-error
-}=
+const {error}=
 await sb
 .from(table)
 .upsert(rows);
-
 
 if(error)
 throw error;
@@ -1727,30 +1484,22 @@ throw error;
 
 }
 
+if(op.length){
 
-if(
-op.length
-){
-
-const {
-error
-}=
+const {error}=
 await sb
 .from('monthly_opening')
 .upsert(
 op,
 {
-onConflict:
-'user_id,month'
+onConflict:'user_id,month'
 }
 );
-
 
 if(error)
 throw error;
 
 }
-
 
 localStorage
 .setItem(
@@ -1758,19 +1507,15 @@ localStorage
 'yes'
 );
 
-
 $('migrationBox')
 .classList
 .add('hide');
 
-
 await loadAll();
-
 
 alert(
 '¡Listo! Tus datos ya están guardados online.'
 );
-
 
 }catch(e){
 
@@ -1778,24 +1523,19 @@ err(e);
 
 }finally{
 
-$('migrateBtn')
-.disabled=false;
+$('migrateBtn').disabled=false;
 
-
-$('migrateBtn')
-.textContent=
+$('migrateBtn').textContent=
 'Pasar mis datos a la nube';
 
 }
 
 }
 
-
 /* INICIAR SESIÓN */
 
 $('loginBtn').onclick=
 login;
-
 
 /* RECUPERAR CONTRASEÑA */
 
@@ -1806,7 +1546,6 @@ const email=
 $('loginEmail')
 .value
 .trim();
-
 
 if(!email){
 
@@ -1821,21 +1560,16 @@ return;
 
 }
 
-
 $('forgotPasswordBtn')
 .disabled=true;
-
 
 $('loginMsg')
 .textContent=
 'Enviando correo de recuperación…';
 
-
 try{
 
-const {
-error
-}=
+const {error}=
 await sb.auth
 .resetPasswordForEmail(
 email,
@@ -1845,20 +1579,16 @@ redirectTo:
 }
 );
 
-
 if(error)
 throw error;
-
 
 $('loginMsg')
 .textContent=
 'Listo. Revisá tu email y abrí el enlace para crear una contraseña nueva.';
 
-
 }catch(e){
 
 console.error(e);
-
 
 $('loginMsg')
 .textContent=
@@ -1868,7 +1598,6 @@ e?.message||
 String(e)
 );
 
-
 }finally{
 
 $('forgotPasswordBtn')
@@ -1877,7 +1606,6 @@ $('forgotPasswordBtn')
 }
 
 };
-
 
 /* ENTER PARA INGRESAR */
 
@@ -1889,14 +1617,11 @@ e=>{
 if(
 e.key==='Enter'
 ){
-
 login();
-
 }
 
 }
 );
-
 
 /* SALIR */
 
@@ -1911,89 +1636,57 @@ location.reload();
 
 };
 
-
 /* BOTONES DE LA APP */
 
-$('addIncomeBtn')
-.onclick=
-addIncome;
-
-$('addExpenseBtn')
-.onclick=
-addExpense;
-
-$('addSavingBtn')
-.onclick=
-addSaving;
-
-$('saveOpeningBtn')
-.onclick=
-saveOpening;
-
-$('exportBtn')
-.onclick=
-exportData;
-
-$('refreshBtn')
-.onclick=
-loadAll;
-
-$('migrateBtn')
-.onclick=
-migrate;
-
+$('addIncomeBtn').onclick=addIncome;
+$('addExpenseBtn').onclick=addExpense;
+$('addSavingBtn').onclick=addSaving;
+$('saveOpeningBtn').onclick=saveOpening;
+$('exportBtn').onclick=exportData;
+$('refreshBtn').onclick=loadAll;
+$('migrateBtn').onclick=migrate;
 
 /* RECUPERACIÓN */
 
 let recoveryMode=false;
 
-
 function showRecovery(){
 
 recoveryMode=true;
-
 
 $('appView')
 .classList
 .add('hide');
 
-
 $('loginView')
 .classList
 .remove('hide');
-
 
 $('loginEmail')
 .classList
 .add('hide');
 
-
 $('loginPassword')
 .classList
 .add('hide');
-
 
 $('loginBtn')
 .classList
 .add('hide');
 
-
 $('forgotPasswordBtn')
 .classList
 .add('hide');
 
-
 $('loginMsg')
 .textContent=
 'Abriste correctamente el enlace de recuperación.';
-
 
 $('resetPasswordBox')
 .classList
 .remove('hide');
 
 }
-
 
 /* GUARDAR NUEVA CONTRASEÑA */
 
@@ -2005,11 +1698,9 @@ const p1=
 $('newPassword')
 .value;
 
-
 const p2=
 $('newPassword2')
 .value;
-
 
 if(
 p1.length<8
@@ -2023,7 +1714,6 @@ return;
 
 }
 
-
 if(
 p1!==p2
 ){
@@ -2036,43 +1726,33 @@ return;
 
 }
 
-
 $('saveNewPasswordBtn')
 .disabled=true;
-
 
 $('resetMsg')
 .textContent=
 'Guardando contraseña…';
 
-
 try{
 
-const {
-error
-}=
+const {error}=
 await sb.auth
 .updateUser({
 password:p1
 });
 
-
 if(error)
 throw error;
-
 
 $('resetMsg')
 .textContent=
 'Contraseña actualizada correctamente.';
 
-
 alert(
 'Contraseña actualizada. Ya podés usar la misma contraseña en tu Mac y en tu celular.'
 );
 
-
 recoveryMode=false;
-
 
 const {
 data:{
@@ -2081,7 +1761,6 @@ session
 }=
 await sb.auth
 .getSession();
-
 
 if(
 session?.user
@@ -2093,11 +1772,9 @@ session.user
 
 }
 
-
 }catch(e){
 
 console.error(e);
-
 
 $('resetMsg')
 .textContent=
@@ -2107,7 +1784,6 @@ e?.message||
 String(e)
 );
 
-
 }finally{
 
 $('saveNewPasswordBtn')
@@ -2116,7 +1792,6 @@ $('saveNewPasswordBtn')
 }
 
 };
-
 
 /*
 IMPORTANTE:
@@ -2142,7 +1817,6 @@ showRecovery();
 }
 );
 
-
 /* COMPROBAR SESIÓN */
 
 (async()=>{
@@ -2154,7 +1828,6 @@ session
 }=
 await sb.auth
 .getSession();
-
 
 const recoveryInUrl=
 
@@ -2170,7 +1843,6 @@ location.search
 'type=recovery'
 );
 
-
 if(
 recoveryInUrl
 ){
@@ -2180,7 +1852,6 @@ showRecovery();
 return;
 
 }
-
 
 if(
 session?.user &&
